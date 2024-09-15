@@ -1,0 +1,25 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Exo.WebApi.Repositories;
+using System;
+using Exo.WebApi.Models;
+using Microsoft.DotNet.Scaffolding.Shared.CodeModifier.CodeChange;
+
+namespace Exo.WebApi.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProjetosController : ControllerBase
+    {
+        private readonly ProjetoRepository _projetoRepository;
+        public ProjetosController(ProjetoRepository projetoRepository)
+        {
+            _projetoRepository = projetoRepository;
+        }
+        [HttpGet]
+        public IActionResult Listar()
+        {
+            return Ok(_projetoRepository.Listar());
+        }
+    }
+}
